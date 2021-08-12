@@ -1,4 +1,5 @@
 .metadata
+target/
 bin/
 tmp/
 *.tmp
@@ -9,6 +10,10 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.DS_Store
+.classpath
+.project
+
 
 # External tool builders
 .externalToolBuilders/
@@ -57,4 +62,4 @@ local.properties
 
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
+#.projec
