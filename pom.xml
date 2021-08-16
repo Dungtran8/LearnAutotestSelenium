@@ -5,20 +5,27 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.onemount.dungtran</groupId>
-  <artifactId>DemoSelenium</artifactId>
+  <artifactId>core-java-automation</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>DemoSelenium</name>
+  <name>Core Java Automation</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-lang3</artifactId>
+    <version>3.11</version>
+</dependency>
+  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
