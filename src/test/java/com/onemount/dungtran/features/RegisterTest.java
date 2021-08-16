@@ -1,9 +1,5 @@
 package com.onemount.dungtran.features;
 
-
-
-
-
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -17,7 +13,6 @@ public class RegisterTest extends WebDriverTest {
 
 	String appUrl = "https://secure.vietnamworks.com/register/vi?client_id=3";
 	String xpathRegister = "//input[@id='%s']/following-sibling::span[@class='invalid-feedback']";
-	String text = RandomUtils.randomText(5);
 	Member memberRegister = new Member();
 
 	public RegisterTest() {
@@ -36,6 +31,7 @@ public class RegisterTest extends WebDriverTest {
 
 	@Test
 	public void runTestRegister() throws InterruptedException {
+		openFileWriter("register", false);
 		registerBlankFirstname();
 		registerBlankLastname();
 		registerBlankEmail();
@@ -44,22 +40,23 @@ public class RegisterTest extends WebDriverTest {
 		registerShortPassword();
 		registerInvalidPassword();
 		registerSuccess();
-		System.out.println("Kết thúc chương trình!");
+		closeFileWriter();
 		driver.quit();
+		System.out.println("\n END!");
 
 	}
 
 	private void registerBlankFirstname() throws InterruptedException {
 		String expectText = "Vui lòng nhập Tên.";
-		String message = "Register Blank Firstname: ";
+		String message = "Register Blank First name: ";
 		findElement(By.id("button-register")).click();
-		assertEquals(getText(xpathRegister, "firstname"), expectText,message);
+		assertEquals(getText(xpathRegister, "firstname"), expectText, message);
 	}
 
 	private void registerBlankLastname() throws InterruptedException {
 		String expectText = "Vui lòng nhập Họ.";
-		String message = "Register Blank Lastname: ";
-		Member member = new Member(text);
+		String message = "Register Blank Last name: ";
+		Member member = new Member(RandomUtils.randomText(8));
 		createAnAccount(member);
 		assertEquals(getText(xpathRegister, "lastname"), expectText, message);
 
@@ -68,7 +65,7 @@ public class RegisterTest extends WebDriverTest {
 	private void registerBlankEmail() throws InterruptedException {
 		String expectText = "Vui lòng nhập Email";
 		String message = "Register Blank Email: ";
-		Member member = new Member(text, text);
+		Member member = new Member(RandomUtils.randomText(8), RandomUtils.randomText(8));
 		createAnAccount(member);
 		assertEquals(getText(xpathRegister, "username"), expectText, message);
 
@@ -86,8 +83,8 @@ public class RegisterTest extends WebDriverTest {
 	private void registerInValidEmail() throws InterruptedException {
 		String expectText = "Email không hợp lệ.";
 		String message = "Register with Invalid Email: ";
-		Member member = new Member(text, text,text);
-		createAnAccount(member);
+		memberRegister.setEmail(RandomUtils.randomText(8));
+		createAnAccount(memberRegister);
 		assertEquals(getText(xpathRegister, "username"), expectText, message);
 	}
 
@@ -102,7 +99,7 @@ public class RegisterTest extends WebDriverTest {
 	private void registerShortPassword() throws InterruptedException {
 		String expectText = "Mật Khẩu phải có ít nhất 6 ký tự.";
 		String message = "Register with Short Password: ";
-		memberRegister.setPassword(text);
+		memberRegister.setPassword(RandomUtils.randomText(5));
 		createAnAccount(memberRegister);
 		assertEquals(getText(xpathRegister, "password"), expectText, message);
 	}
@@ -110,9 +107,9 @@ public class RegisterTest extends WebDriverTest {
 	private void registerSuccess() throws InterruptedException {
 		String urlConfirmRegister = "https://secure.vietnamworks.com/register/vi/confirm?client_id=3";
 		String message = "Register Success: ";
-		memberRegister.setPassword(RandomUtils.randomPassword(8));
-		createAnAccount(memberRegister);
-		assertContains(driver.getCurrentUrl(), urlConfirmRegister,message);
+		Member member = new Member();
+		createAnAccount(member);
+		assertContains(driver.getCurrentUrl(), urlConfirmRegister, message);
 	}
 
 }

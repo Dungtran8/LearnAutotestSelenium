@@ -13,6 +13,7 @@ public class LoginTest extends WebDriverTest {
 
 	String appUrl = "https://id.zing.vn/";
 	String xpathLogin = "//div[@id='%s']/descendant::div[@class='tipcontent']";
+	
 	String expectBlankText = "Bạn cần nhập thông tin này";
 	public LoginTest() {
 		getUrl(appUrl);
@@ -28,15 +29,17 @@ public class LoginTest extends WebDriverTest {
 
 	@Test
 	public void runTestLogin() throws InterruptedException {
-
+		openFileWriter("login", false);
 		checkTitle();
 		loginBlankUsername();
 		loginBlankPassword();
 		loginInvalidPassword();
 		loginWrongPassword();
 		loginSuccess();
-		System.out.println("End");
+		closeFileWriter();
 		driver.quit();
+		System.out.println("\n END");
+
 	}
 
 	private void checkTitle() throws InterruptedException {
@@ -55,7 +58,7 @@ public class LoginTest extends WebDriverTest {
 	}
 
 	private void loginBlankUsername() throws InterruptedException {
-		String message = "Login Blank Username: ";
+		String message = "Login Blank User name: ";
 		findElement(By.className("zidsignin_btn")).click();
 		assertEquals(getText(xpathLogin, "login_account_error"), expectBlankText, message);
 	}

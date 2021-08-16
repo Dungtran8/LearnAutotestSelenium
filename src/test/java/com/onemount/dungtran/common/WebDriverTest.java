@@ -35,5 +35,4 @@ public class WebDriverTest {
 		return findElement(by).getText();
 	}
 
-	
 }

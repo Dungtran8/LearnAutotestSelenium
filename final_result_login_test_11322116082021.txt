@@ -1,0 +1,6 @@
+Check title page: PASSED
+Login Blank User name: PASSED
+Login Blank Password: PASSED
+Login Invalid Password: PASSED
+Login Wrong Password: PASSED
+Login Success: PASSED

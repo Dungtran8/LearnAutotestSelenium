@@ -1,0 +1,8 @@
+Register Blank First name: PASSED
+Register Blank Last name: PASSED
+Register Blank Email: PASSED
+Register with Invalid Email: PASSED
+Register Blank Password: PASSED
+Register with Short Password: PASSED
+Register with Invalid Password: PASSED
+Register Success: PASSED
